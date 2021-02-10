@@ -23,6 +23,7 @@ class Psr4
         try {
             if (is_array($namespace)) {
                 $this->namespace($namespace);
+                return;
             }
     
             if (!is_readable($namespace)) {
@@ -39,6 +40,7 @@ class Psr4
 
                 $this->namespace($json_decode['autoload']);
                 fclose($gestor);
+                return;
             }
         } catch (\Exception $th) {
             die($th->getMessage());
