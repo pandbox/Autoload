@@ -17,12 +17,12 @@ Usually we would use the ```spl_autoload_register()``` to register a custom auto
 <?php
 require_once 'src/Autoload/Psr4.php';
 
-$class = new Autoload\Psr4('namespace.json');
+$class = new Autoload\Psr4('loader.json');
 
 $class->autoload();
 ```
 
-The json file must have a structure similar to this 
+The loader.json file should have a structure similar to this ...
 
 ```json
 {
@@ -34,6 +34,7 @@ The json file must have a structure similar to this
 }
 ```
 
+You can pass the namespace values to ***Autoload\Psr4 *** as an array directly in the class instance 
 
 ```php
 <?php
