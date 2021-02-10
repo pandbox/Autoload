@@ -14,7 +14,6 @@ Usually we would use the ```spl_autoload_register()``` to register a custom auto
 ## Requirements
 - PHP 7.1 or greater (version 3.x and below supports PHP 5.5+)
 - PHP JSON extension enabled.
-=
 
 
 ## Exemple
