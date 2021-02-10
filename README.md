@@ -61,4 +61,4 @@ $class->autoload();
 
 ## License
 
-The MIT License (MIT). Please see License File for more information.
+The MIT License (MIT). Please see [License File](https://github.com/pandbox/Autoload/blob/main/LICENSE) for more information.
