@@ -4,7 +4,7 @@ This class is an implementation of the [PSR4](https://www.php-fig.org/psr/psr-4/
 
 Autoload\Psr4 is an autoloader that implements PSR-4. Just like any autoloader, depending on its setup, it will try and find the files your code is looking for based on file, class, namespace etc. 
 
-Usually we would use the spl_autoload_register() to register a custom autoloader for our application. Autoload\Psr4 hides this complexity. After you define all your namespaces, classes, directories and files you will need to call the autoload() function, and the autoloader is ready to be used.
+Usually we would use the ```spl_autoload_register()``` to register a custom autoloader for our application. Autoload\Psr4 hides this complexity. After you define all your namespaces, classes, directories and files you will need to call the ```autoload()``` function, and the autoloader is ready to be used.
 
 
 ### Exemple
