@@ -58,3 +58,7 @@ $class = new Autoload\Psr4(
 
 $class->autoload();
 ```
+
+## License
+
+The MIT License (MIT). Please see License File for more information.
