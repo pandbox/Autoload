@@ -11,7 +11,7 @@ Usually we would use the ```spl_autoload_register()``` to register a custom auto
 
 ## Exemple
 
-***Autoload\Psr4*** you can run ce passing it the namespace values in a json file as shown below ...
+***Autoload\Psr4*** you can run passing it the namespace values in a json file as shown below ...
 
 ```php
 <?php
@@ -22,7 +22,18 @@ $class = new Autoload\Psr4('namespace.json');
 $class->autoload();
 ```
 
-or
+The json file must have a structure similar to this 
+
+```json
+{
+    "autoload": {
+        "Foo": "path/to/foo",
+        "Bar": "path/to/foo/Bar",
+        "Baz\\Qux": "path/to/Baz/Qux"
+    }
+}
+```
+
 
 ```php
 <?php
@@ -30,9 +41,10 @@ require_once 'src/Autoload/Psr4.php';
 
 $class = new Autoload\Psr4(
     [
-        #namespace    #path
-        "Codev"    => "src/codev",
-        "Cms"      => "app",
+        #Prefixes      #Path
+        "Foo"      =>  "path/to/foo",
+        "Bar"      =>  "path/to/foo/Bar",
+        "Baz\\Qux" =>  "path/to/Baz/Qux"
     ]
 );
 
