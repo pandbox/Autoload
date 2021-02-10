@@ -9,6 +9,9 @@ This component relies on PHP’s autoloading classes capability. If a class defi
 Usually we would use the ```spl_autoload_register()``` to register a custom autoloader for our application. ***Autoload\Psr4*** hides this complexity. After you define all your namespaces, classes, directories and files you will need to call the ```autoload()``` function, and the autoloader is ready to be used.
 
 
+>To add a namespace conforming to PSR-4 specifications, point to the base directory for that namespace. Multiple base directories are allowed, and will be searched in the order they are added.
+
+
 ## Exemple
 
 ***Autoload\Psr4*** you can run passing it the namespace values in a json file as shown below ...
