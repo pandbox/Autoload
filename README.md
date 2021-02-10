@@ -11,6 +11,11 @@ Usually we would use the ```spl_autoload_register()``` to register a custom auto
 
 >To add a namespace conforming to *`PSR-4`* specifications, point to the base directory for that namespace. Multiple base directories are allowed, and will be searched in the order they are added.
 
+## Requirements
+- PHP 7.1 or greater (version 3.x and below supports PHP 5.5+)
+- PHP JSON extension enabled.
+=
+
 
 ## Exemple
 
