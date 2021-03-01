@@ -44,7 +44,7 @@ Namespace values can also be passed to it in a .php file ...
 ```php
 <?php
 require_once 'src/Autoload/Psr4.php';
-$prefix = 'path/to/loader.json';
+$prefix = 'path/to/loader.php';
 new Codev\Autoload\Psr4($prefix);
 ```
 
