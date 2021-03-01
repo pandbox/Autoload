@@ -1,50 +1,62 @@
 <?php
-namespace Autoload;
+namespace Codev\Autoload;
 
 /**
+ * @subpackage Autoload PSR 4
+ * 
  * Autocargador de clases
  */
 class Psr4
 {
-    /** @var array $namespace
+    /** @var array $prefix
      * Arreglo con la vinculacion de los namespace y las rutas de las clases
      */
-    public $namespace = [];
+    public $prefix = [];
 
     /**
      * Constructor
      *
      * Define el tipo de datos pasados
      *
-     * @param mixed $namespace
+     * @param mixed $prefix
      **/
-    public function __construct($namespace)
+    public function __construct($prefix)
     {
         try {
-            if (is_array($namespace)) {
-                $this->namespace($namespace);
-                return;
+            if (is_array($prefix)) {
+                $this->namespace($prefix);
             }
     
-            if (!is_readable($namespace)) {
-                throw new \Exception("Error: The file <b>{$namespace}</b> does not exist", 1);
+            if (!is_readable($prefix)) {
+                throw new \Exception("Error: The file <b>{$prefix}</b> does not exist", 1);
             }
 
-            $file_info = pathinfo($namespace);
+            $file_info = pathinfo($prefix);
 
-            if ($file_info['extension'] == 'json') {
-                $gestor = fopen($namespace, "r");
-                $content = fread($gestor, filesize($namespace));
+            switch ($file_info['extension']) {
+                case 'php':
+                    require_once $prefix;
+                    $this->namespace($autoload);
+                    break;
 
-                $json_decode = json_decode($content, true);
-
-                $this->namespace($json_decode['autoload']);
-                fclose($gestor);
-                return;
+                case 'json':
+                    $gestor = fopen($prefix, "r");
+                    $content = fread($gestor, filesize($prefix));
+                    $json_decode = json_decode($content, true);
+                
+                    $this->namespace($json_decode['autoload']);
+                    fclose($gestor);
+                    break;
+                
+                default:
+                    throw new \Exception("Error: Extention {$file_info['extension']} no compatible", 1);
+                    break;
             }
         } catch (\Exception $th) {
             die($th->getMessage());
         }
+
+        return $this->autoload();
     }
 
     /**
@@ -52,11 +64,11 @@ class Psr4
      *
      * Asignacion de los valores a la variable
      *
-     * @param array $namespace
+     * @param array $prefix
      **/
-    public function namespace(Array $namespace)
+    public function namespace(Array $prefix)
     {
-        $this->namespace = $namespace;
+        $this->prefix = $prefix;
     }
 
     /**
@@ -69,18 +81,16 @@ class Psr4
     private function load($class)
     {
         try {
-            foreach ($this->namespace as $key => $value) {
-                $len = strlen($key);
-    
+            foreach ($this->prefix as $key => $value) {
+                $len = strlen($key);    
                 $path = str_replace(['\\','/'], DS, ABS_PATH . $value . substr($class, $len) . '.php');
-    
                 if (is_readable($path)) {
                     $file = $path;
                 break;
                 }
             }
             if (!isset($file)) {
-                throw new \Exception("Error: <b>{$class}</b> Not found", 1);
+                throw new \Exception("Error: The class <b>{$class}</b> Not found", 1);
                 
             }
             require_once $file;
