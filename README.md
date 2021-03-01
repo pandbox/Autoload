@@ -23,10 +23,8 @@ Usually we would use the ```spl_autoload_register()``` to register a custom auto
 ```php
 <?php
 require_once 'src/Autoload/Psr4.php';
-
-$class = new Autoload\Psr4('loader.json');
-
-$class->autoload();
+$prefix = 'path/to/loader.json';
+new Codev\Autoload\Psr4($prefix);
 ```
 
 The loader.json file should have a structure similar to this ...
@@ -39,6 +37,27 @@ The loader.json file should have a structure similar to this ...
         "Baz\\Qux": "path/to/Baz/Qux"
     }
 }
+```
+
+Namespace values can also be passed to it in a .php file ...
+
+```php
+<?php
+require_once 'src/Autoload/Psr4.php';
+$prefix = 'path/to/loader.php';
+new 
+```
+
+The loader.php file should have a structure similar to this
+
+```php
+<?php
+$autoload = [
+    #Prefixes      #Path
+    "Foo"      =>  "path/to/foo",
+    "Bar"      =>  "path/to/foo/Bar",
+    "Baz\\Qux" =>  "path/to/Baz/Qux"
+];
 ```
 
 You can pass the namespace values to ***Autoload\Psr4*** as an array directly in the class instance ...
