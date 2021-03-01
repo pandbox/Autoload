@@ -44,8 +44,8 @@ Namespace values can also be passed to it in a .php file ...
 ```php
 <?php
 require_once 'src/Autoload/Psr4.php';
-$prefix = 'path/to/loader.php';
-new 
+$prefix = 'path/to/loader.json';
+new Codev\Autoload\Psr4($prefix);
 ```
 
 The loader.php file should have a structure similar to this
@@ -65,8 +65,8 @@ You can pass the namespace values to ***Autoload\Psr4*** as an array directly in
 ```php
 <?php
 require_once 'src/Autoload/Psr4.php';
-
-$class = new Autoload\Psr4(
+$prefix = 'path/to/loader.json';
+new Codev\Autoload\Psr4(
     [
         #Prefixes      #Path
         "Foo"      =>  "path/to/foo",
@@ -74,8 +74,6 @@ $class = new Autoload\Psr4(
         "Baz\\Qux" =>  "path/to/Baz/Qux"
     ]
 );
-
-$class->autoload();
 ```
 
 ## License
