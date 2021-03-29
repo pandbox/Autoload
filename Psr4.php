@@ -22,53 +22,8 @@ class Psr4
      **/
     public function __construct($prefix)
     {
-        try {
-            if (is_array($prefix)) {
-                $this->namespace($prefix);
-            }
-    
-            if (!is_readable($prefix)) {
-                throw new \Exception("Error: The file <b>{$prefix}</b> does not exist", 1);
-            }
-
-            $file_info = pathinfo($prefix);
-
-            switch ($file_info['extension']) {
-                case 'php':
-                    require_once $prefix;
-                    $this->namespace($autoload);
-                    break;
-
-                case 'json':
-                    $gestor = fopen($prefix, "r");
-                    $content = fread($gestor, filesize($prefix));
-                    $json_decode = json_decode($content, true);
-                
-                    $this->namespace($json_decode['autoload']);
-                    fclose($gestor);
-                    break;
-                
-                default:
-                    throw new \Exception("Error: Extention {$file_info['extension']} no compatible", 1);
-                    break;
-            }
-        } catch (\Exception $th) {
-            die($th->getMessage());
-        }
-
-        return $this->autoload();
-    }
-
-    /**
-     * Namespace
-     *
-     * Asignacion de los valores a la variable
-     *
-     * @param array $prefix
-     **/
-    public function namespace(Array $prefix)
-    {
         $this->prefix = $prefix;
+        return $this->autoload();
     }
 
     /**
