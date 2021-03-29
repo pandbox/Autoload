@@ -22,7 +22,6 @@ Usually we would use the ```spl_autoload_register()``` to register a custom auto
 ```php
 <?php
 require_once 'src/Autoload/Psr4.php';
-$prefix = 'path/to/loader.json';
 new Codev\Autoload\Psr4(
     [
         #Prefixes      #Path
