@@ -17,7 +17,7 @@ Usually we would use the ```spl_autoload_register()``` to register a custom auto
 
 ## Exemple
 
-*** Autoload \ Psr4 *** is executed by passing as namespace value an array directly in the class instance ... 
+***Autoload\Psr4*** is executed by passing as namespace value an array directly in the class instance ... 
 
 ```php
 <?php
@@ -53,10 +53,6 @@ $autoload = [
     "Baz\\Qux" =>  "path/to/Baz/Qux"
 ];
 ```
-
-You can pass the namespace values to ***Autoload\Psr4*** as an array directly in the class instance ...
-
-
 
 ## License
 
