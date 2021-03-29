@@ -22,7 +22,7 @@ Usually we would use the ```spl_autoload_register()``` to register a custom auto
 ```php
 <?php
 require_once 'src/Autoload/Psr4.php';
-new Codev\Autoload\Psr4(
+new Oasis\Autoload\Psr4(
     [
         #Prefixes      #Path
         "Foo"      =>  "path/to/foo",
@@ -38,7 +38,7 @@ Namespace values can also be passed to it in a .php file ...
 <?php
 require_once 'src/Autoload/Psr4.php';
 require_once 'path/to/loader.php';
-new Codev\Autoload\Psr4($autoload);
+new Oasis\Autoload\Psr4($autoload);
 ```
 
 The loader.php file should have a structure similar to this
