@@ -1,5 +1,5 @@
 <?php
-namespace Codev\Autoload;
+namespace Oasis\Autoload;
 
 /**
  * @subpackage Autoload PSR 4
