@@ -1,5 +1,5 @@
 <?php
-namespace Oasis\Autoload;
+namespace Autoload;
 
 /**
  * @subpackage Autoload PSR 4
@@ -20,8 +20,9 @@ class Psr4
      *
      * @param mixed $prefix
      **/
-    public function __construct($prefix)
+    public function __construct($prefix, $root_dir)
     {
+        $this->root_dir = $root_dir;
         $this->prefix = $prefix;
         return $this->autoload();
     }
@@ -38,7 +39,7 @@ class Psr4
         try {
             foreach ($this->prefix as $key => $value) {
                 $len = strlen($key);    
-                $path = str_replace(['\\','/'], DS, ABS_PATH . $value . substr($class, $len) . '.php');
+                $path = str_replace(['\\','/'], DIRECTORY_SEPARATOR, $this->root_dir . $value . substr($class, $len) . '.php');
                 if (is_readable($path)) {
                     $file = $path;
                 break;
